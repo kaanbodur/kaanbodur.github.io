@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaan Bodur | Future Tech Portal</title>
+    <meta name="description" content="Kaan Bodur - Critical Technologies Chief @ TUSAŞ">
+
+    <!-- Fütüristik Font Ailesi -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Renk Paleti: Dark Sci-Fi / Aerospace */
+            --bg-deep: #050b14;
+            --bg-panel: rgba(16, 28, 45, 0.7);
+            --accent-cyan: #00f3ff;
+            --accent-blue: #0077b5;
+            --text-glow: #bdebf7;
+            --text-dim: #6c859e;
+            --border-glow: rgba(0, 243, 255, 0.3);
+
+            --font-tech: 'Rajdhani', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-tech);
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-deep);
+            color: var(--text-glow);
+            min-height: 100vh;
+            /* Cyber Grid Arkaplan */
+            background-image:
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Glow Efekti */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -20%;
+            left: -20%;
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(0, 119, 181, 0.15) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* CAM KART YAPISI (Glassmorphism) */
+        .glass-panel {
+            background: var(--bg-panel);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* HEADER CARD */
+        .profile-card {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        /* Dekoratif Köşeler */
+        .glass-panel::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 1px solid transparent;
+            background:
+                linear-gradient(to right, var(--accent-cyan) 2px, transparent 2px) 0 0,
+                linear-gradient(to bottom, var(--accent-cyan) 2px, transparent 2px) 0 0,
+                linear-gradient(to left, var(--accent-cyan) 2px, transparent 2px) 100% 0,
+                linear-gradient(to bottom, var(--accent-cyan) 2px, transparent 2px) 100% 0,
+                linear-gradient(to right, var(--accent-cyan) 2px, transparent 2px) 0 100%,
+                linear-gradient(to top, var(--accent-cyan) 2px, transparent 2px) 0 100%,
+                linear-gradient(to left, var(--accent-cyan) 2px, transparent 2px) 100% 100%,
+                linear-gradient(to top, var(--accent-cyan) 2px, transparent 2px) 100% 100%;
+            background-repeat: no-repeat;
+            background-size: 15px 15px;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        /* HUD Avatar */
+        .avatar-container {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px dashed var(--accent-cyan);
+            border-radius: 50%;
+            animation: spin 20s linear infinite;
+        }
+
+        .avatar-ring::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-top-color: var(--accent-cyan);
+            animation: spin 4s linear infinite reverse;
+        }
+
+        .profile-avatar-placeholder {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #1e2a38, #0b121c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--accent-cyan);
+            font-weight: 700;
+            z-index: 2;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--text-dim);
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .profile-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
+            background: linear-gradient(to right, #fff, var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .profile-headline {
+            font-size: 1.1rem;
+            color: var(--accent-cyan);
+            margin: 10px 0 20px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .profile-bio {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-dim);
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        /* SOCIAL BUTTONS (Tech Style) */
+        .social-links {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid var(--border-glow);
+            color: var(--text-glow);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+
+        .social-btn:hover {
+            background: var(--accent-cyan);
+            color: #000;
+            box-shadow: 0 0 15px var(--accent-cyan);
+        }
+
+        .icon {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+            fill: currentColor;
+        }
+
+        /* SECTIONS */
+        .section-header {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 40px 0 20px;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-header::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent-cyan), transparent);
+            margin-left: 20px;
+        }
+
+        /* PROJECTS GRID */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            padding: 25px;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            height: 100%;
+            box-sizing: border-box;
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.0) 100%);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.15);
+        }
+
+        .project-card:hover .project-title svg {
+            color: var(--accent-cyan) !important;
+            transform: rotate(45deg);
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .project-title svg {
+            transition: all 0.3s ease;
+        }
+
+        .project-desc {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            flex-grow: 1;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .status-indicator {
+            font-size: 0.75rem;
+            color: var(--accent-cyan);
+            border: 1px solid var(--accent-cyan);
+            padding: 2px 8px;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            align-self: flex-start;
+        }
+
+        /* Loading */
+        .loading {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: var(--accent-cyan);
+            padding: 40px;
+            font-size: 1.2rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.5;
+            }
+        }
+
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- PROFİL KARTI (HUD style) -->
+        <div class="glass-panel profile-card">
+            <div class="avatar-container">
+                <div class="avatar-ring"></div>
+                <div class="profile-avatar-placeholder">KB</div>
+            </div>
+
+            <h1 class="profile-name">Kaan Bodur</h1>
+            <div class="profile-headline">Critical Technologies Chief @ TUSAŞ</div>
+
+            <div class="profile-bio">
+                <p>
+                    [SYSTEM: ONLINE] <br>
+                    Havacılık ve savunma sanayiinde teknoloji öngörüsü ve stratejik inovasyon yönetimi.
+                    Geleceğin mühendislik disiplinlerini bugünün verisiyle inşa ediyorum.
+                </p>
+            </div>
+
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/kaanbodur/" target="_blank" class="social-btn">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path
+                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.784 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
+                    LINKEDIN
+                </a>
+                <a href="https://github.com/kaanbodur" target="_blank" class="social-btn">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                    GITHUB
+                </a>
+                <a href="mailto:kaanbodur@gmail.com" class="social-btn">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path
+                            d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-11.174l4.623 5.462zm2.157-1.227l3.22 3.804 3.221-3.804 7.561 8.329h-21.563l7.561-8.329zm3.22 2.138l-4.832-5.71h13.664l-4.832 5.71zm5.223 2.129l4.623-5.462v11.174l-4.623-5.712z" />
+                    </svg>
+                    CONTACT
+                </a>
+            </div>
+        </div>
+
+        <!-- PROJELER BÖLÜMÜ -->
+        <div class="section-header">/// Aktif Modüller & Projeler</div>
+        <div id="projects-container" class="projects-grid">
+            <div class="loading">
+                > VERİLER İNDİRİLİYOR...
+            </div>
+        </div>
+
+        <div class="footer">
+            © 2025 Kaan Bodur. Systems Operational. <br>
+            <span style="color:var(--accent-cyan)">TUSAŞ / Technology Foresight Unit</span>
+        </div>
+
+    </div>
+
+    <script>
+        const username = 'kaanbodur';
+        const container = document.getElementById('projects-container');
+        const mainRepoName = `${username}.github.io`;
+
+        async function loadProjects() {
+            try {
+                const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated`);
+
+                if (!response.ok) throw new Error('GitHub API Hatası');
+
+                const repos = await response.json();
+
+                const sites = repos.filter(repo => repo.has_pages && repo.name !== mainRepoName);
+
+                container.innerHTML = '';
+
+                if (sites.length === 0) {
+                    renderDemoProjects();
+                    return;
+                }
+
+                sites.forEach(repo => {
+                    const desc = repo.description || "Açıklama verisi bulunamadı.";
+
+                    const card = document.createElement('a');
+                    card.href = `https://${username}.github.io/${repo.name}`;
+                    card.className = 'glass-panel project-card';
+                    card.innerHTML = `
+                    <div class="project-title">
+                        ${repo.name}
+                        <svg style="width:20px;height:20px;color:var(--text-dim);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </div>
+                    <div class="project-desc">${desc}</div>
+                    <div class="status-indicator">DEPLOYED</div>
+                `;
+                    container.appendChild(card);
+                });
+
+            } catch (error) {
+                console.error(error);
+                renderDemoProjects();
+            }
+        }
+
+        function renderDemoProjects() {
+            const demos = [
+                { name: 'yazikovani', desc: 'Teknoloji incelemeleri ve dijital bahçe notları.' },
+                { name: 'tech-foresight-sim', desc: 'Savunma sanayii için Monte Carlo tabanlı tahminleme modeli.' },
+                { name: 'reading-radar', desc: 'İnteraktif okuma listesi ve kaynak takip sistemi.' }
+            ];
+
+            container.innerHTML = '';
+
+            const info = document.createElement('p');
+            info.style.gridColumn = "1 / -1";
+            info.style.color = "var(--text-dim)";
+            info.style.fontSize = "0.8rem";
+            info.style.fontFamily = "monospace";
+            info.innerHTML = "> BAĞLANTI BEKLENİYOR... [GÖSTERİM MODU AKTİF]";
+            container.appendChild(info);
+
+            demos.forEach(demo => {
+                const card = document.createElement('a');
+                card.href = `https://${username}.github.io/${demo.name}`;
+                card.className = 'glass-panel project-card';
+                card.innerHTML = `
+                <div class="project-title">
+                    ${demo.name}
+                     <svg style="width:20px;height:20px;color:var(--text-dim);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </div>
+                <div class="project-desc">${demo.desc}</div>
+                <div class="status-indicator">SİMÜLASYON</div>
+            `;
+                container.appendChild(card);
+            });
+        }
+
+        loadProjects();
+
+    </script>
+
+</body>
+
+</html>
